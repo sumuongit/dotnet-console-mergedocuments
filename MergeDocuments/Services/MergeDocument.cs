@@ -18,6 +18,15 @@ namespace MergeDocuments.Services
             if (files == null || files.Length == 0) 
                 throw new ArgumentException("No files provided.");
 
+            foreach (var file in files)
+            {
+                if (!File.Exists(file))
+                    throw new FileNotFoundException($"Input file not found: {file}");
+            }
+
+            if (string.IsNullOrWhiteSpace(outputFile))
+                throw new ArgumentException("Output file path cannot be null or empty.", nameof(outputFile));
+
             // Copy first document as base for merge
             File.Copy(files[0], outputFile, overwrite: true);
 

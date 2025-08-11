@@ -4,31 +4,46 @@ class Program
 {
     static void Main()
     {
-        // Prepare input file paths relative to the app base directory
-        string[] filesToMerge =
+        try
         {
-           Path.Combine(AppContext.BaseDirectory, "Docs", "source1.docx"),
-           Path.Combine(AppContext.BaseDirectory, "Docs", "source2.docx"),
-        };
+            // Prepare input file paths relative to the app base directory
+            string[] filesToMerge =
+            {
+               Path.Combine(AppContext.BaseDirectory, "Docs", "source1.docx"),
+               Path.Combine(AppContext.BaseDirectory, "Docs", "source2.docx"),
+            };
 
-        // Output merged document path
-        string outputPath = Path.Combine(AppContext.BaseDirectory, "Docs", "merged.docx");
+            // Output merged document path
+            string outputPath = Path.Combine(AppContext.BaseDirectory, "Docs", "merged.docx");
 
-        // Initialize merger service with dynamic footer functionality
-        var merger = new MergeDocument(new DynamicFooter());
-        merger.MergeDocsWithDynamicFooters(filesToMerge, outputPath);
+            // Initialize merger service with dynamic footer functionality
+            var merger = new MergeDocument(new DynamicFooter());
+            merger.MergeDocsWithDynamicFooters(filesToMerge, outputPath);
 
-        Console.WriteLine("Merged file created: " + outputPath);
+            Console.WriteLine("Merged file created: " + outputPath);
 
-        // Define content control replacements (tag -> replacement text)
-        var replacements = new Dictionary<string, string>
+            // Define content control replacements (tag -> replacement text)
+            var replacements = new Dictionary<string, string>
+            {
+                { "ClientName", "ImpleVista" },
+                { "AssignmentName", "MergeDocuments" }
+            };
+
+            // Initialize content control updater and apply replacements
+            var contentUpdater = new UpdateContentControl();
+            contentUpdater.UpdateContentControls(outputPath, replacements);
+        }
+        catch (FileNotFoundException fnfEx)
         {
-            { "ClientName", "ImpleVista" },
-            { "AssignmentName", "MergeDocuments" }
-        };
-
-        // Initialize content control updater and apply replacements
-        var contentUpdater = new UpdateContentControl();
-        contentUpdater.UpdateContentControls(outputPath, replacements);
+            Console.WriteLine("File error: " + fnfEx.Message);
+        }
+        catch (ArgumentException argEx)
+        {
+            Console.WriteLine("Argument error: " + argEx.Message);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("An unexpected error occurred: " + ex.Message);
+        }
     }
 }

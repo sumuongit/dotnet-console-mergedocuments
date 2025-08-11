@@ -9,6 +9,19 @@ namespace MergeDocuments.Services
         public void CreateFooter(ZipArchive zip, XDocument relsDoc, XDocument contentTypesDoc,
                                  string filePath, string relId, string footerFileName)
         {
+            if (zip == null) 
+                throw new ArgumentNullException(nameof(zip));
+            if (relsDoc == null) 
+                throw new ArgumentNullException(nameof(relsDoc));
+            if (contentTypesDoc == null) 
+                throw new ArgumentNullException(nameof(contentTypesDoc));
+            if (string.IsNullOrEmpty(filePath)) 
+                throw new ArgumentException("File path cannot be null or empty", nameof(filePath));
+            if (string.IsNullOrEmpty(relId))
+                throw new ArgumentException("Relationship ID cannot be null or empty", nameof(relId));
+            if (string.IsNullOrEmpty(footerFileName))
+                throw new ArgumentException("Footer file name cannot be null or empty", nameof(footerFileName));
+
             // Build the footer XML containing the filename and page number field
             var footerXml = BuildFooterXDocument(Path.GetFileName(filePath));
 

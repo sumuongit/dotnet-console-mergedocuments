@@ -8,6 +8,19 @@ namespace MergeDocuments.Services
         // Finds content controls by their tag value and replaces their content with the given text.
         public void UpdateContentControls(string mergedFilePath, Dictionary<string, string> replacements)
         {
+            if (string.IsNullOrEmpty(mergedFilePath))
+                throw new ArgumentException("Merged file path cannot be null or empty", nameof(mergedFilePath));
+            if (!File.Exists(mergedFilePath))
+                throw new FileNotFoundException("Merged file not found", mergedFilePath);
+            if (replacements == null)
+                throw new ArgumentNullException(nameof(replacements));
+            if (replacements.Count == 0)
+                throw new ArgumentException("Replacements dictionary cannot be empty", nameof(replacements));
+            if (replacements.Keys.Any(string.IsNullOrEmpty))
+                throw new ArgumentException("Replacement keys cannot be null or empty", nameof(replacements));
+            if (replacements.Values.Any(v => v == null))
+                throw new ArgumentException("Replacement values cannot be null", nameof(replacements));
+
             // Open the DOCX file as a ZIP archive for modification
             using var updateZip = ZipFile.Open(mergedFilePath, ZipArchiveMode.Update);
 
