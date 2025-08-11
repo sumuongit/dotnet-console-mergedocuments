@@ -1,0 +1,14 @@
+# Build results
+bin/
+obj/
+# User-specific files
+*.user
+*.suo
+*.userprefs
+# Visual Studio cache/options
+.vs/
+# .NET Core
+*.dll
+*.exe
+*.pdb
+*.db
