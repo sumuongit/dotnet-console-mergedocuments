@@ -20,14 +20,11 @@ This C# console application:
 
 ---
 
-## Configuration
-Modify replacements for content controls in the `Program.cs` file under the `replacements` dictionary.
-
----
+## Input
+Source `.docx` files are kept in the `Docs` folder (project root).
 
 ## How to run
-1. Place source `.docx` files in the `Docs` folder (project root).
-2. Build and run:
+Build and run:
 ```bash
 dotnet build
 dotnet run --project ./MergeDocuments
