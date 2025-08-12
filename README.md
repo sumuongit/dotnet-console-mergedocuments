@@ -17,12 +17,14 @@ This C# console application:
 ## Prerequisites
 - .NET SDK 8.0+ (or the version used in the project)
 
-> **Note:** Hardcoding **filesToMerge** and **replacements** ensures simplicity, clarity, and maintainability for known files and placeholders, reducing complexity and avoiding runtime input errors, while still allowing easy updates in code if requirements change.
-
 ---
 
 ## Input
 Source `.docx` files are kept in the `Docs` folder (project root).
+
+> **Note:** Hardcoding **filesToMerge** and **replacements** ensures simplicity, clarity, and maintainability for known files and placeholders, reducing complexity and avoiding runtime input errors, while still allowing easy updates in code if requirements change.
+
+---
 
 ## How to run
 Build and run:
