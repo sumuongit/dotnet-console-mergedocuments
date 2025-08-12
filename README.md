@@ -37,3 +37,14 @@ dotnet run --project ./MergeDocuments
 
 ## Output
 After running the application, the merged Word document will be created at: `\bin\Debug\net8.0\Docs\merged.docx`
+
+## Screen Shots
+**Source1.docx:**<br/>
+![Source1.docx](https://github.com/sumuongit/dotnet-console-mergedocuments/blob/master/MergeDocuments/Images/Source1.docx.png)
+
+**Source2.docx:**<br/>
+![Source1.docx](https://github.com/sumuongit/dotnet-console-mergedocuments/blob/master/MergeDocuments/Images/Source2.docx.png)
+
+**Merged.docx:**<br/>
+![Source1.docx](https://github.com/sumuongit/dotnet-console-mergedocuments/blob/master/MergeDocuments/Images/Merged.docx.png)
+
