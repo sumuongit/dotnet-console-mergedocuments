@@ -16,7 +16,8 @@ This C# console application:
 
 ## Prerequisites
 - .NET SDK 8.0+ (or the version used in the project)
-- Windows recommended for Interop-based PDF (if later used)
+
+> **Note:** Hardcoding **filesToMerge** and **replacements** ensures simplicity, clarity, and maintainability for known files and placeholders, reducing complexity and avoiding runtime input errors, while still allowing easy updates in code if requirements change.
 
 ---
 
